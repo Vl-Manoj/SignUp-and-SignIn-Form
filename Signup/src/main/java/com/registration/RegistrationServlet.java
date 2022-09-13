@@ -30,9 +30,40 @@ public class RegistrationServlet extends HttpServlet {
 		String uname = request.getParameter("name");
 		String uemail = request.getParameter("email");
 		String upwd = request.getParameter("pass");
+		String Reupwd = request.getParameter("re_pass");
 		String umobile = request.getParameter("contact");
 		RequestDispatcher dispatcher = null;
 		Connection con = null;
+		
+		if (uname == null || uname.equals("")) {
+			request.setAttribute("status","invalidUserName");
+			dispatcher = request.getRequestDispatcher("registration.jsp");
+			dispatcher.forward(request, response);
+		}	
+		if (uemail == null || uemail.equals("")) {
+			request.setAttribute("status","invalidEmail");
+			dispatcher = request.getRequestDispatcher("registration.jsp");
+			dispatcher.forward(request, response);
+		}		
+		if (upwd == null || upwd.equals("")) {
+			request.setAttribute("status","invalidPassword");
+			dispatcher = request.getRequestDispatcher("registration.jsp");
+			dispatcher.forward(request, response);
+		} else if(!upwd.equals(Reupwd)){
+			request.setAttribute("status","invalidConfirmPassword");
+			dispatcher = request.getRequestDispatcher("registration.jsp");
+			dispatcher.forward(request, response);
+		}
+		if (umobile == null || umobile.equals("")) {
+			request.setAttribute("status","invalidMobileNo");
+			dispatcher = request.getRequestDispatcher("registration.jsp");
+			dispatcher.forward(request, response);
+		} else if(umobile.length() > 10){
+			request.setAttribute("status","invalidMobileNoLength");
+			dispatcher = request.getRequestDispatcher("registration.jsp");
+			dispatcher.forward(request, response);	
+		}
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/reg?useSSL=false","root","Manoj@71");

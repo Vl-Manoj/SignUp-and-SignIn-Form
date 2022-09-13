@@ -32,25 +32,25 @@
 							<div class="form-group">
 								<label for="name"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input
-									type="text" name="name" id="name" placeholder="Your Name" />
+									type="text" name="name" id="name" placeholder="Your Name" required="required" />
 							</div>
 							<div class="form-group">
 								<label for="email"><i class="zmdi zmdi-email"></i></label> <input
-									type="email" name="email" id="email" placeholder="Your Email" />
+									type="email" name="email" id="email" placeholder="Your Email" required="required" />
 							</div>
 							<div class="form-group">
 								<label for="pass"><i class="zmdi zmdi-lock"></i></label> <input
-									type="password" name="pass" id="pass" placeholder="Password" />
+									type="password" name="pass" id="pass" placeholder="Password" required="required" />
 							</div>
 							<div class="form-group">
 								<label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
 								<input type="password" name="re_pass" id="re_pass"
-									placeholder="Repeat your password" />
+									placeholder="Repeat your password" required="required" />
 							</div>
 							<div class="form-group">
 								<label for="contact"><i class="zmdi zmdi-lock-outline"></i></label>
 								<input type="text" name="contact" id="contact"
-									placeholder="Contact no" />
+									placeholder="Contact no" required="required" />
 							</div>
 							<div class="form-group form-button">
 								<input type="submit" name="signup" id="signup"
@@ -77,14 +77,33 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" href="alert/dist/sweetalert.css">
 	
-<script type="text/javascript">
+    <script type="text/javascript">
 
- var status = document.getElementById("status").value;
- if(status == "success"){
-	 swal("Congrats","Account Created Successfully","success");
- }
+		 var status = document.getElementById("status").value;
+		 if(status == "success"){
+			 swal("Congrats", "Account Created Successfully", "success");
+		 }
+		 if(status == "invalidUserName"){
+			 swal("Sorry", "Please Enter Name", "error");
+		 }
+		 if(status == "invalidEmail"){
+			 swal("Sorry", "Please Enter EmailID", "error");
+		 }
+		 if(status == "invalidPassword"){
+			 swal("Sorry", "Please Enter Password", "error");
+		 }
+		 if(status == "invalidConfirmPassword"){
+			 swal("Sorry", "Password and Confirm Password both should be same", "error");
+		 }
+	
+		 if(status == "invalidMobileNo"){
+			 swal("Sorry", "Please Enter MobileNo", "error");
+		 }
+		 if(status == "invalidMobileNoLength"){
+			 swal("Sorry", "Please Enter valid MobileNo length", "error");
+		 }
  
-</script>
+    </script>
 
 
 </body>
