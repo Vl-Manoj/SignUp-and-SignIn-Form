@@ -24,8 +24,18 @@ public class login extends HttpServlet {
 		String upwd = request.getParameter("password");
 		HttpSession session = request.getSession();
 		RequestDispatcher dispatcher = null;
-		 
-		try {
+		
+		if (uemail == null || uemail.equals("")) {
+			request.setAttribute("status","invalidEmail");
+			dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+			
+		}if(upwd == null || upwd.equals("")) {
+			request.setAttribute("status","invalidUpwd");
+			dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
+			try {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/reg?useSSL=false","root","Manoj@71");
@@ -50,3 +60,4 @@ public class login extends HttpServlet {
 	}
 
 }
+
